@@ -30,7 +30,7 @@
                     android:id="@+id/pButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/hi_res_logo" />
+                    app:srcCompat="@drawable/programming_one" />
             </TableRow>
 
             <TableRow
@@ -45,7 +45,7 @@
                     android:id="@+id/qButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/hi_res_logo" />
+                    app:srcCompat="@drawable/inspiration_one" />
             </TableRow>
 
             <TableRow
@@ -60,7 +60,7 @@
                     android:id="@+id/rButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/hi_res_logo" />
+                    app:srcCompat="@drawable/famous_one" />
             </TableRow>
 
             <TableRow
@@ -75,7 +75,7 @@
                     android:id="@+id/sButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/hi_res_logo" />
+                    app:srcCompat="@drawable/funny_one" />
             </TableRow>
 
             <TableRow
