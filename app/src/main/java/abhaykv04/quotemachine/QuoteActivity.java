@@ -14,10 +14,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Abhay on 7/5/2017.
- */
-
 public class QuoteActivity extends AppCompatActivity {
 
     private String TAG = QuoteActivity.class.getSimpleName();

@@ -6,11 +6,77 @@
     android:layout_height="match_parent"
     tools:context="abhaykv04.quotemachine.MainActivity">
 
-    <Button
-        android:id="@+id/pButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Programming Quotes"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/pButton"
+                    android:layout_width="600px"
+                    android:layout_height="300px"
+                    app:srcCompat="@mipmap/ic_launcher" />
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/qButton"
+                    android:layout_width="600px"
+                    android:layout_height="300px"
+                    app:srcCompat="@mipmap/ic_launcher" />
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/rButton"
+                    android:layout_width="600px"
+                    android:layout_height="300px"
+                    app:srcCompat="@mipmap/ic_launcher" />
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/sButton"
+                    android:layout_width="600px"
+                    android:layout_height="300px"
+                    app:srcCompat="@mipmap/ic_launcher" />
+            </TableRow>
+
+            <TableRow
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/tButton"
+                    android:layout_width="600px"
+                    android:layout_height="300px"
+                    app:srcCompat="@mipmap/ic_launcher" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
 </RelativeLayout>
