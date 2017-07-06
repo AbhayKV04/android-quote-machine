@@ -1,0 +1,4 @@
+.LOG
+
+10:55 PM 7/5/2017
+Made a very simple layout of MainActivity and QuoteActivity. Added the functionality of retrieving quote in the QuoteActivity.
