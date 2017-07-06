@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="abhaykv04.quotemachine.WelcomeActivity">
+
+    <TextView
+        android:id="@+id/welcomeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quote Machine"
+        android:textStyle="bold"
+        android:textSize="45sp"
+        android:textColor="@color/colorAccent"
+        android:typeface="serif"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/welcomeSubtitle"
+        android:layout_alignStart="@+id/welcomeSubtitle" />
+
+    <TextView
+        android:id="@+id/welcomeSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Any Mood, Respective Quote"
+        android:textSize="27sp"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@+id/welcomeTitle"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
