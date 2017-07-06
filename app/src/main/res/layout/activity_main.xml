@@ -21,60 +21,56 @@
             <TableRow
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/pButton"
-                    android:layout_width="600px"
-                    android:layout_height="300px"
-                    app:srcCompat="@mipmap/ic_launcher" />
-            </TableRow>
-
-            <TableRow
-                android:gravity="center_horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="40dp">
 
                 <ImageButton
                     android:id="@+id/qButton"
-                    android:layout_width="600px"
-                    android:layout_height="300px"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
                     app:srcCompat="@mipmap/ic_launcher" />
             </TableRow>
 
             <TableRow
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="40dp">
 
                 <ImageButton
                     android:id="@+id/rButton"
-                    android:layout_width="600px"
-                    android:layout_height="300px"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
                     app:srcCompat="@mipmap/ic_launcher" />
             </TableRow>
 
             <TableRow
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="40dp">
 
                 <ImageButton
                     android:id="@+id/sButton"
-                    android:layout_width="600px"
-                    android:layout_height="300px"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
                     app:srcCompat="@mipmap/ic_launcher" />
             </TableRow>
 
             <TableRow
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="40dp">
 
                 <ImageButton
-                    android:id="@+id/tButton"
-                    android:layout_width="600px"
-                    android:layout_height="300px"
+                    android:id="@+id/pButton"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
                     app:srcCompat="@mipmap/ic_launcher" />
             </TableRow>
         </TableLayout>
