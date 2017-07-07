@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton progButton, motiButton, randButton, funnyButton, startButton;
+    private ImageButton progButton, motiButton, famousButton, funnyButton, startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
          * Intent ID Guide
          * 1 - Programming
          * 2 - Motivational
-         * 3 - Random
+         * 3 - Famous
          * 4 - Funny
          * 5 - Start-Up
          */
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        randButton = (ImageButton) findViewById(R.id.randButton);
-        randButton.setOnClickListener(new View.OnClickListener() {
+        famousButton = (ImageButton) findViewById(R.id.famousButton);
+        famousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
                 intent.putExtra("id", 4);
-                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Rajnikanth&lastName=&limitTo=[nerdy]");
+                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Rajinikanth&lastName=&limitTo=[nerdy]");
                 startActivity(intent);
             }
         });
