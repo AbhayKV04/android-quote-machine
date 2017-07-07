@@ -31,7 +31,7 @@
                     android:id="@+id/pButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/programming_one" />
+                    app:srcCompat="@drawable/programming" />
             </TableRow>
 
             <TableRow
@@ -46,7 +46,7 @@
                     android:id="@+id/qButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/inspiration_one" />
+                    app:srcCompat="@drawable/inspiration" />
             </TableRow>
 
             <TableRow
@@ -61,7 +61,7 @@
                     android:id="@+id/rButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/famous_one" />
+                    app:srcCompat="@drawable/famous" />
             </TableRow>
 
             <TableRow
@@ -76,7 +76,7 @@
                     android:id="@+id/sButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
-                    app:srcCompat="@drawable/funny_one" />
+                    app:srcCompat="@drawable/funny" />
             </TableRow>
 
             <TableRow

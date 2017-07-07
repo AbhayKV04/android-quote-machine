@@ -16,11 +16,15 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private String TAG = QuoteActivity.class.getSimpleName();
     private TextView welcomeTitle, welcomeSubtitle;
-    String quoteString, authorString;
-    private static int SPLASH_TIMEOUT = 5000;
 
-    // URL to get quote JSON
+    // Time (in ms) for which welcome screen appears
+    private int SPLASH_TIMEOUT = 5000;
+
+    // URL to get welcome quote JSON
     private static String url = "https://talaikis.com/api/quotes/random/";
+
+    String quoteString = "Quote Machine";
+    String authorString = "Any Mood, Respective Quote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +86,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Check your internet connection!", Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -95,7 +99,7 @@ public class WelcomeActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             welcomeTitle.setText("\"" + quoteString + "\"");
-            welcomeSubtitle.setText("- " + authorString);
+            welcomeSubtitle.setText(authorString);
         }
     }
 }

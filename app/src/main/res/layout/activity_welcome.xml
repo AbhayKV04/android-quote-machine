@@ -11,7 +11,7 @@
         android:id="@+id/welcomeTitle"
         android:layout_width="350sp"
         android:layout_height="wrap_content"
-        android:text="..."
+        android:text='"Quote Machine"'
         android:textStyle="bold"
         android:textSize="25sp"
         android:textColor="@color/colorAccent"
@@ -24,10 +24,9 @@
         android:id="@+id/welcomeSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Any Mood, Respective Quote"
         android:textSize="20sp"
         android:textColor="@color/colorAccent"
         android:layout_below="@+id/welcomeTitle"
-        android:layout_alignRight="@+id/welcomeTitle"
-        android:layout_alignEnd="@+id/welcomeTitle" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
