@@ -22,7 +22,7 @@ public class QuoteActivity extends AppCompatActivity {
     private TextView textView;
     String quoteString;
 
-    // URL to get contacts JSON
+    // URL to get quote JSON
     private static String url = "http://quotes.stormconsultancy.co.uk/random.json";
 
     ArrayList<HashMap<String, String>> quoteList;

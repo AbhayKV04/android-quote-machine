@@ -9,24 +9,25 @@
 
     <TextView
         android:id="@+id/welcomeTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="350sp"
         android:layout_height="wrap_content"
-        android:text="Quote Machine"
+        android:text="..."
         android:textStyle="bold"
-        android:textSize="45sp"
+        android:textSize="25sp"
         android:textColor="@color/colorAccent"
         android:typeface="serif"
+        android:textAlignment="center"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/welcomeSubtitle"
-        android:layout_alignStart="@+id/welcomeSubtitle" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/welcomeSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Any Mood, Respective Quote"
-        android:textSize="27sp"
+        android:text=""
+        android:textSize="20sp"
         android:textColor="@color/colorAccent"
         android:layout_below="@+id/welcomeTitle"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/welcomeTitle"
+        android:layout_alignEnd="@+id/welcomeTitle" />
 </RelativeLayout>
