@@ -1,6 +1,7 @@
 package abhaykv04.quotemachine;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,16 @@ public class QuoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote);
+
+        Bundle extras = getIntent().getExtras();
+        int id = extras.getInt("id");
+
+        /**
+         * Set different background color for different categories
+         */
+        if (id == 1) {
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#8bc34a"));
+        }
 
         new GetQuote().execute();
     }
@@ -107,6 +118,11 @@ public class QuoteActivity extends AppCompatActivity {
              * */
             quote = (TextView) findViewById(R.id.quote);
             author = (TextView) findViewById(R.id.author);
+
+            if (id == 1) {
+                quote.setTextColor(Color.parseColor("#2196f3"));
+                author.setTextColor(Color.parseColor("#2196F3"));
+            }
 
             quote.setText(quoteString);
             author.setText(authorString);
