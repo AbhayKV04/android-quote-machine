@@ -8,18 +8,37 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton pButton;
+    private ImageButton progButton, motiButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pButton = (ImageButton) findViewById(R.id.pButton);
-        pButton.setOnClickListener(new View.OnClickListener() {
+        /**
+         * Intent ID Guide
+         * 1 - Programming
+         * 2 - Motivational
+         */
+
+        progButton = (ImageButton) findViewById(R.id.progButton);
+        progButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
+                intent.putExtra("id", 1);
+                intent.putExtra("url", "http://quotes.stormconsultancy.co.uk/random.json");
+                startActivity(intent);
+            }
+        });
+
+        motiButton = (ImageButton) findViewById(R.id.motiButton);
+        motiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
+                intent.putExtra("id", 2);
+                intent.putExtra("url", "https://apimk.com/motivationalquotes?get_quote=yes");
                 startActivity(intent);
             }
         });

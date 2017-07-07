@@ -8,32 +8,22 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class QuoteActivity extends AppCompatActivity {
 
     private String TAG = QuoteActivity.class.getSimpleName();
 
     private ProgressDialog pDialog;
-    private TextView textView;
-    String quoteString;
-
-    // URL to get quote JSON
-    private static String url = "http://quotes.stormconsultancy.co.uk/random.json";
-
-    ArrayList<HashMap<String, String>> quoteList;
+    private TextView quote, author;
+    private String quoteString, authorString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quote);
-
-        quoteList = new ArrayList<>();
-        textView = (TextView) findViewById(R.id.textView);
 
         new GetQuote().execute();
     }
@@ -43,15 +33,20 @@ public class QuoteActivity extends AppCompatActivity {
      */
     private class GetQuote extends AsyncTask<Void, Void, Void> {
 
+        Bundle extras = getIntent().getExtras();
+
+        // URL to get quote JSON
+        private String url = extras.getString("url");
+        private int id = extras.getInt("id");
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             // Showing progress dialog
             pDialog = new ProgressDialog(QuoteActivity.this);
-            pDialog.setMessage("Fetching...");
+            pDialog.setMessage("Fetching");
             pDialog.setCancelable(false);
             pDialog.show();
-
         }
 
         @Override
@@ -65,13 +60,20 @@ public class QuoteActivity extends AppCompatActivity {
 
             if (jsonStr != null) {
                 try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-                    quoteString = jsonObj.getString("quote");
 
-                    HashMap<String, String> quote = new HashMap<>();
-                    quote.put("quoteString", quoteString);
-                    quoteList.add(quote);
-
+                    /**
+                     * See 'Intent ID Guide' in MainActivity
+                     */
+                    if (id == 1) {
+                        JSONObject jsonObject = new JSONObject(jsonStr);
+                        quoteString = jsonObject.getString("quote");
+                        authorString = jsonObject.getString("author");
+                    } else if (id == 2) {
+                        JSONArray jsonArray = new JSONArray(jsonStr);
+                        JSONObject jsonObject = jsonArray.getJSONObject(0);
+                        quoteString = jsonObject.getString("quote");
+                        authorString = jsonObject.getString("author_name");
+                    }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
@@ -80,7 +82,6 @@ public class QuoteActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
-
                 }
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
@@ -92,7 +93,6 @@ public class QuoteActivity extends AppCompatActivity {
                 });
 
             }
-
             return null;
         }
 
@@ -105,7 +105,11 @@ public class QuoteActivity extends AppCompatActivity {
             /**
              * Updating parsed JSON data into TextView
              * */
-            textView.setText(quoteString);
+            quote = (TextView) findViewById(R.id.quote);
+            author = (TextView) findViewById(R.id.author);
+
+            quote.setText(quoteString);
+            author.setText(authorString);
         }
     }
 }
