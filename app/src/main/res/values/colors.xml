@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Base colors -->
     <color name="colorPrimary">#4e342e</color>
     <color name="colorPrimaryDark">#4e342e</color>
     <color name="colorAccent">#d7ccc8</color>
+
+    <!-- Main Activity colors-->
+    <color name="mainColorPrimary">#f5f5f5</color>
+
+    <!-- Start_up Activity colors -->
+    <color name="funnyColorPrimary">#558b2f</color>
+    <color name="funnyColorAccent">#dcedc8</color>
+
+    <!-- Funny Activity colors -->
+    <color name="motiColorPrimary">#9e9d24</color>
+    <color name="motiColorAccent">#f0f4c3</color>
+
+    <!-- Motivational Activity colors -->
+    <color name="progColorPrimary">#f9a825</color>
+    <color name="progColorAccent">#fff9c4</color>
+
+    <!-- Programming Activity colors -->
+    <color name="randColorPrimary">#ff8f00</color>
+    <color name="randColorAccent">#ffecb3</color>
+
+    <!-- Random Activity colors -->
+    <color name="startColorPrimary">#ef6c00</color>
+    <color name="startColorAccent">#ffe0b2</color>
+
 </resources>

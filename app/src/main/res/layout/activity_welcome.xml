@@ -28,5 +28,6 @@
         android:textSize="20sp"
         android:textColor="@color/colorAccent"
         android:layout_below="@+id/welcomeTitle"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp" />
 </RelativeLayout>

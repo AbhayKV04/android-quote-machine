@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton progButton, motiButton, randButton;
+    private ImageButton progButton, motiButton, randButton, funnyButton, startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
          * 1 - Programming
          * 2 - Motivational
          * 3 - Random
+         * 4 - Funny
+         * 5 - Start-Up
          */
 
         progButton = (ImageButton) findViewById(R.id.progButton);
@@ -51,6 +53,28 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
                 intent.putExtra("id", 3);
                 intent.putExtra("url", "https://talaikis.com/api/quotes/random/");
+                startActivity(intent);
+            }
+        });
+
+        funnyButton = (ImageButton) findViewById(R.id.funnyButton);
+        funnyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
+                intent.putExtra("id", 4);
+                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Rajnikanth&lastName=&limitTo=[nerdy]");
+                startActivity(intent);
+            }
+        });
+
+        startButton = (ImageButton) findViewById(R.id.startButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
+                intent.putExtra("id", 5);
+                intent.putExtra("url", "https://wisdomapi.herokuapp.com/v1/random");
                 startActivity(intent);
             }
         });

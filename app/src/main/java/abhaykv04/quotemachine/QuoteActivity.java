@@ -1,7 +1,6 @@
 package abhaykv04.quotemachine;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,10 +29,18 @@ public class QuoteActivity extends AppCompatActivity {
         int id = extras.getInt("id");
 
         /**
-         * Set different background color for different categories
+         * See 'Intent ID Guide' in MainActivity
          */
         if (id == 1) {
-            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#8bc34a"));
+            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.progColorPrimary));
+        } else if (id == 2) {
+            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.motiColorPrimary));
+        } else if (id == 3) {
+            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.randColorPrimary));
+        } else if (id == 4) {
+            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.funnyColorPrimary));
+        } else if (id == 5) {
+            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.startColorPrimary));
         }
 
         new GetQuote().execute();
@@ -71,11 +78,7 @@ public class QuoteActivity extends AppCompatActivity {
 
             if (jsonStr != null) {
                 try {
-
-                    /**
-                     * See 'Intent ID Guide' in MainActivity
-                     */
-                    if (id == 1) {
+                    if (id == 1 || id == 3) {
                         JSONObject jsonObject = new JSONObject(jsonStr);
                         quoteString = jsonObject.getString("quote");
                         authorString = jsonObject.getString("author");
@@ -84,10 +87,16 @@ public class QuoteActivity extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         quoteString = jsonObject.getString("quote");
                         authorString = jsonObject.getString("author_name");
-                    } else if (id == 3) {
+                    } else if (id == 4) {
                         JSONObject jsonObject = new JSONObject(jsonStr);
-                        quoteString = jsonObject.getString("quote");
-                        authorString = jsonObject.getString("author");
+                        JSONObject quoteObject = jsonObject.getJSONObject("value");
+                        quoteString = quoteObject.getString("joke");
+                        authorString = "";
+                    } else if (id == 5) {
+                        JSONObject jsonObject = new JSONObject(jsonStr);
+                        JSONObject authorObject = jsonObject.getJSONObject("author");
+                        quoteString = jsonObject.getString("content");
+                        authorString = authorObject.getString("name");
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -103,10 +112,9 @@ public class QuoteActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "Couldn't get json from server. Check LogCat for possible errors!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Check your internet connection!", Toast.LENGTH_LONG).show();
                     }
                 });
-
             }
             return null;
         }
@@ -124,11 +132,23 @@ public class QuoteActivity extends AppCompatActivity {
             author = (TextView) findViewById(R.id.author);
 
             if (id == 1) {
-                quote.setTextColor(Color.parseColor("#ffffff"));
-                author.setTextColor(Color.parseColor("#ffffff"));
+                quote.setTextColor(getResources().getColor(R.color.progColorAccent));
+                author.setTextColor(getResources().getColor(R.color.progColorAccent));
+            } else if (id == 2) {
+                quote.setTextColor(getResources().getColor(R.color.motiColorAccent));
+                author.setTextColor(getResources().getColor(R.color.motiColorAccent));
+            } else if (id == 3) {
+                quote.setTextColor(getResources().getColor(R.color.randColorAccent));
+                author.setTextColor(getResources().getColor(R.color.randColorAccent));
+            } else if (id == 4) {
+                quote.setTextColor(getResources().getColor(R.color.funnyColorAccent));
+                author.setTextColor(getResources().getColor(R.color.funnyColorAccent));
+            } else if (id == 5) {
+                quote.setTextColor(getResources().getColor(R.color.startColorAccent));
+                author.setTextColor(getResources().getColor(R.color.startColorAccent));
             }
 
-            quote.setText(quoteString);
+            quote.setText("\"" + quoteString + "\"");
             author.setText(authorString);
         }
     }
