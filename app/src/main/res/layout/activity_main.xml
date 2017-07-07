@@ -26,7 +26,7 @@
                 android:layout_marginLeft="20dp">
 
                 <ImageButton
-                    android:id="@+id/motButton"
+                    android:id="@+id/motiButton"
                     android:layout_width="350dp"
                     android:layout_height="234dp"
                     app:srcCompat="@drawable/motivation" />

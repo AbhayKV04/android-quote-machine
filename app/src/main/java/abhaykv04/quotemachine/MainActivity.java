@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton progButton, motiButton;
+    private ImageButton progButton, motiButton, randButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
          * Intent ID Guide
          * 1 - Programming
          * 2 - Motivational
+         * 3 - Random
          */
 
         progButton = (ImageButton) findViewById(R.id.progButton);
@@ -39,6 +40,17 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
                 intent.putExtra("id", 2);
                 intent.putExtra("url", "https://apimk.com/motivationalquotes?get_quote=yes");
+                startActivity(intent);
+            }
+        });
+
+        randButton = (ImageButton) findViewById(R.id.randButton);
+        randButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
+                intent.putExtra("id", 3);
+                intent.putExtra("url", "https://talaikis.com/api/quotes/random/");
                 startActivity(intent);
             }
         });

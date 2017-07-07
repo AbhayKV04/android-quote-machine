@@ -84,6 +84,10 @@ public class QuoteActivity extends AppCompatActivity {
                         JSONObject jsonObject = jsonArray.getJSONObject(0);
                         quoteString = jsonObject.getString("quote");
                         authorString = jsonObject.getString("author_name");
+                    } else if (id == 3) {
+                        JSONObject jsonObject = new JSONObject(jsonStr);
+                        quoteString = jsonObject.getString("quote");
+                        authorString = jsonObject.getString("author");
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -120,8 +124,8 @@ public class QuoteActivity extends AppCompatActivity {
             author = (TextView) findViewById(R.id.author);
 
             if (id == 1) {
-                quote.setTextColor(Color.parseColor("#2196f3"));
-                author.setTextColor(Color.parseColor("#2196F3"));
+                quote.setTextColor(Color.parseColor("#ffffff"));
+                author.setTextColor(Color.parseColor("#ffffff"));
             }
 
             quote.setText(quoteString);

@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private String TAG = QuoteActivity.class.getSimpleName();
+    private String TAG = WelcomeActivity.class.getSimpleName();
     private TextView welcomeTitle, welcomeSubtitle;
 
     // Time (in ms) for which welcome screen appears
@@ -23,8 +23,8 @@ public class WelcomeActivity extends AppCompatActivity {
     // URL to get welcome quote JSON
     private static String url = "https://talaikis.com/api/quotes/random/";
 
-    String quoteString = "Quote Machine";
-    String authorString = "Any Mood, Respective Quote";
+    private String quoteString = "Quote Machine";
+    private String authorString = "Any Mood, Respective Quote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
