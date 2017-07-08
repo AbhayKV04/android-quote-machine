@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class QuoteActivity extends AppCompatActivity {
+public class QuoteActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private String TAG = QuoteActivity.class.getSimpleName();
 
@@ -21,10 +23,15 @@ public class QuoteActivity extends AppCompatActivity {
     private String quoteString = "Check your internet connection!";
     private String authorString = "";
 
+    GestureDetector gestureDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        gestureDetector = new GestureDetector(this);
         setContentView(R.layout.activity_quote);
+
+        Toast.makeText(getApplicationContext(), "Swipe to get a new one!", Toast.LENGTH_SHORT).show();
 
         Bundle extras = getIntent().getExtras();
         int id = extras.getInt("id");
@@ -46,6 +53,46 @@ public class QuoteActivity extends AppCompatActivity {
 
         new GetQuote().execute();
 
+    }
+
+    /**
+     * Swipe gesture detection
+     */
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        return gestureDetector.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        new GetQuote().execute();
+        return true;
     }
 
     /**
