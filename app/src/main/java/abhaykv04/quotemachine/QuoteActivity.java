@@ -1,6 +1,5 @@
 package abhaykv04.quotemachine;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,6 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
 
     private String TAG = QuoteActivity.class.getSimpleName();
 
-    private ProgressDialog pDialog;
     private TextView quote, author;
     private String quoteString = "Check your internet connection!";
     private String authorString = "";
@@ -109,11 +107,6 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Showing progress dialog
-            pDialog = new ProgressDialog(QuoteActivity.this);
-            pDialog.setMessage("Fetching");
-            pDialog.setCancelable(false);
-            pDialog.show();
         }
 
         @Override
@@ -171,9 +164,7 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            // Dismiss the progress dialog
-            if (pDialog.isShowing())
-                pDialog.dismiss();
+
             /**
              * Updating parsed JSON data into TextView
              * */
