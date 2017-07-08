@@ -2,23 +2,21 @@ package abhaykv04.quotemachine;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private String TAG = WelcomeActivity.class.getSimpleName();
     private TextView welcomeTitle, welcomeSubtitle;
-
-    // Time (in ms) for which welcome screen appears
-    private int SPLASH_TIMEOUT = 5000;
 
     // URL to get welcome quote JSON
     private static String url = "https://talaikis.com/api/quotes/random/";
@@ -26,24 +24,56 @@ public class WelcomeActivity extends AppCompatActivity {
     private String quoteString = "Quote Machine";
     private String authorString = "Any Mood, Respective Quote";
 
+    GestureDetector gestureDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        gestureDetector = new GestureDetector(this);
         setContentView(R.layout.activity_welcome);
 
         welcomeTitle = (TextView) findViewById(R.id.welcomeTitle);
         welcomeSubtitle = (TextView) findViewById(R.id.welcomeSubtitle);
 
         new GetQuote().execute();
+    }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent welcomeIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(welcomeIntent);
-                finish();
-            }
-        }, SPLASH_TIMEOUT);
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        return gestureDetector.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
+        return false;
     }
 
     /**
