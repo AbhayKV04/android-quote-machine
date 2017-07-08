@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
                 intent.putExtra("id", 3);
-                intent.putExtra("url", "https://talaikis.com/api/quotes/random/");
+                intent.putExtra("url", "https://talaikis.com/api/quotes/random");
                 startActivity(intent);
             }
         });
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
                 intent.putExtra("id", 4);
-                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Rajini&lastName=Kanth&limitTo=[nerdy]");
+                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Rajini&lastName=Kanth&limitTo=[nerdy]&escape=javascript");
                 startActivity(intent);
             }
         });

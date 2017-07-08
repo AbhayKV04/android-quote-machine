@@ -1,6 +1,6 @@
 package abhaykv04.quotemachine;
 
-import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,14 +14,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 public class QuoteActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     private String TAG = QuoteActivity.class.getSimpleName();
-    private ProgressDialog pDialog;
 
-    private TextView quote, author;
+    private TextView quote, author, newText;
     private String quoteString = "Check your internet connection!";
     private String authorString = "";
+
+    String[] primaryColors = {"#C62828", "#AD1457", "#6A1B9A", "#4527A0", "#283593", "#1565C0", "#0277BD", "#00838F", "#00695C", "#2E7D32", "#558B2F", "#9E9D24", "#F9A825", "#FF8F00", "#EF6C00", "#D84315"};
+    String[] accentColors = {"#FFCDD2", "#F8BBD0", "#E1BEE7", "#D1C4E9", "#C5CAE9", "#BBDEFB", "#B3E5FC", "#B2EBF2", "#B2DFDB", "#C8E6C9", "#DCEDC8", "#F0F4C3", "#FFF9C4", "#FFECB3", "#FFE0B2", "#FFCCBC"};
 
     GestureDetector gestureDetector;
 
@@ -31,26 +35,11 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         gestureDetector = new GestureDetector(this);
         setContentView(R.layout.activity_quote);
 
-        Bundle extras = getIntent().getExtras();
-        int id = extras.getInt("id");
-
-        /**
-         * See 'Intent ID Guide' in MainActivity
-         */
-        if (id == 1) {
-            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.progColorPrimary));
-        } else if (id == 2) {
-            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.motiColorPrimary));
-        } else if (id == 3) {
-            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.randColorPrimary));
-        } else if (id == 4) {
-            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.funnyColorPrimary));
-        } else if (id == 5) {
-            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.startColorPrimary));
-        }
+        quote = (TextView) findViewById(R.id.quote);
+        author = (TextView) findViewById(R.id.author);
+        newText = (TextView) findViewById(R.id.newText);
 
         new GetQuote().execute();
-
     }
 
     /**
@@ -107,12 +96,7 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            // Showing progress dialog
-            pDialog = new ProgressDialog(QuoteActivity.this);
-            pDialog.setMessage("Fetching");
-            pDialog.setCancelable(true);
-            pDialog.show();
+            newText.setText("Fetching");
         }
 
         @Override
@@ -171,35 +155,24 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
 
-            // Dismiss the progress dialog
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-
             /**
              * Updating parsed JSON data into TextView
              * */
-            quote = (TextView) findViewById(R.id.quote);
-            author = (TextView) findViewById(R.id.author);
 
-            if (id == 1) {
-                quote.setTextColor(getResources().getColor(R.color.progColorAccent));
-                author.setTextColor(getResources().getColor(R.color.progColorAccent));
-            } else if (id == 2) {
-                quote.setTextColor(getResources().getColor(R.color.motiColorAccent));
-                author.setTextColor(getResources().getColor(R.color.motiColorAccent));
-            } else if (id == 3) {
-                quote.setTextColor(getResources().getColor(R.color.randColorAccent));
-                author.setTextColor(getResources().getColor(R.color.randColorAccent));
-            } else if (id == 4) {
-                quote.setTextColor(getResources().getColor(R.color.funnyColorAccent));
-                author.setTextColor(getResources().getColor(R.color.funnyColorAccent));
-            } else if (id == 5) {
-                quote.setTextColor(getResources().getColor(R.color.startColorAccent));
-                author.setTextColor(getResources().getColor(R.color.startColorAccent));
-            }
+            int randomIndex = new Random().nextInt(primaryColors.length);
+            String randomPrimary = (primaryColors[randomIndex]);
+            String randomAccent = (accentColors[randomIndex]);
+            Log.e(TAG, "randomPrimary: " + randomPrimary);
+            Log.e(TAG, "randomAccent: " + randomAccent);
+
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor(randomPrimary));
+            quote.setTextColor(Color.parseColor(randomAccent));
+            author.setTextColor(Color.parseColor(randomAccent));
+            newText.setTextColor(Color.parseColor(randomAccent));
 
             quote.setText("\"" + quoteString + "\"");
             author.setText(authorString);
+            newText.setText("New");
         }
     }
 }

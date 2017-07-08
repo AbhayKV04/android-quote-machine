@@ -19,7 +19,7 @@ public class WelcomeActivity extends AppCompatActivity implements GestureDetecto
     private TextView welcomeTitle, welcomeSubtitle;
 
     // URL to get welcome quote JSON
-    private static String url = "https://talaikis.com/api/quotes/random/";
+    private static String url = "https://talaikis.com/api/quotes/random";
 
     private String quoteString = "Quote Machine";
     private String authorString = "Any Mood, Respective Quote";
