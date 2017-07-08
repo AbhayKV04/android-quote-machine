@@ -10,22 +10,22 @@
     <color name="mainColorPrimary">#f5f5f5</color>
 
     <!-- Funny Activity colors -->
-    <color name="funnyColorPrimary">#558b2f</color>
-    <color name="funnyColorAccent">#dcedc8</color>
+    <color name="funnyColorPrimary">#00838f</color>
+    <color name="funnyColorAccent">#b2ebf2</color>
 
     <!-- Motivational Activity colors -->
-    <color name="motiColorPrimary">#9e9d24</color>
-    <color name="motiColorAccent">#f0f4c3</color>
+    <color name="motiColorPrimary">#2e7d32</color>
+    <color name="motiColorAccent">#c8e6c9</color>
 
     <!-- Programming Activity colors -->
-    <color name="progColorPrimary">#f9a825</color>
-    <color name="progColorAccent">#fff9c4</color>
+    <color name="progColorPrimary">#558b2f</color>
+    <color name="progColorAccent">#dcedc8</color>
 
     <!-- Random Activity colors -->
-    <color name="randColorPrimary">#ff8f00</color>
-    <color name="randColorAccent">#ffecb3</color>
+    <color name="randColorPrimary">#00838f</color>
+    <color name="randColorAccent">#b2ebf2</color>
 
     <!-- Start-Up Activity colors -->
-    <color name="startColorPrimary">#ef6c00</color>
-    <color name="startColorAccent">#ffe0b2</color>
+    <color name="startColorPrimary">#2e7d32</color>
+    <color name="startColorAccent">#c8e6c9</color>
 </resources>
