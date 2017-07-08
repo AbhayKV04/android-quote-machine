@@ -174,8 +174,8 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
                 author.setTextColor(Color.parseColor(randomAccent));
             } else if (themeId == 1) {
                 getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainDark));
-                quote.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainLight));
-                author.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainLight));
+                quote.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.colorAccent));
+                author.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.colorAccent));
             }
 
             newText.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainLight));
