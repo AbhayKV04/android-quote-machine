@@ -3,6 +3,7 @@ package abhaykv04.quotemachine;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -23,21 +24,23 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
     private TextView quote, author, newText;
     private String quoteString = "Check your internet connection!";
     private String authorString = "";
-
-    String[] primaryColors = {"#C62828", "#AD1457", "#6A1B9A", "#4527A0", "#283593", "#1565C0", "#0277BD", "#00838F", "#00695C", "#2E7D32", "#558B2F", "#9E9D24", "#F9A825", "#FF8F00", "#EF6C00", "#D84315"};
-    String[] accentColors = {"#FFCDD2", "#F8BBD0", "#E1BEE7", "#D1C4E9", "#C5CAE9", "#BBDEFB", "#B3E5FC", "#B2EBF2", "#B2DFDB", "#C8E6C9", "#DCEDC8", "#F0F4C3", "#FFF9C4", "#FFECB3", "#FFE0B2", "#FFCCBC"};
+    private String[] primaryColors = {"#C62828", "#AD1457", "#6A1B9A", "#4527A0", "#283593", "#1565C0", "#0277BD", "#00838F", "#00695C", "#2E7D32", "#558B2F", "#9E9D24", "#F9A825", "#FF8F00", "#EF6C00", "#D84315"};
+    private String[] accentColors = {"#FFCDD2", "#F8BBD0", "#E1BEE7", "#D1C4E9", "#C5CAE9", "#BBDEFB", "#B3E5FC", "#B2EBF2", "#B2DFDB", "#C8E6C9", "#DCEDC8", "#F0F4C3", "#FFF9C4", "#FFECB3", "#FFE0B2", "#FFCCBC"};
 
     GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        gestureDetector = new GestureDetector(this);
+        gestureDetector = new GestureDetector(QuoteActivity.this);
         setContentView(R.layout.activity_quote);
 
         quote = (TextView) findViewById(R.id.quote);
         author = (TextView) findViewById(R.id.author);
         newText = (TextView) findViewById(R.id.newText);
+
+        getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainDark));
+        newText.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainLight));
 
         new GetQuote().execute();
     }
@@ -45,7 +48,6 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
     /**
      * Single touch detection
      */
-
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         return gestureDetector.onTouchEvent(motionEvent);
@@ -159,17 +161,24 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
              * Updating parsed JSON data into TextView
              * */
 
-            int randomIndex = new Random().nextInt(primaryColors.length);
-            String randomPrimary = (primaryColors[randomIndex]);
-            String randomAccent = (accentColors[randomIndex]);
-            Log.e(TAG, "randomPrimary: " + randomPrimary);
-            Log.e(TAG, "randomAccent: " + randomAccent);
+            int randomIndex, themeId;
+            themeId = extras.getInt("themeId");
 
-            getWindow().getDecorView().setBackgroundColor(Color.parseColor(randomPrimary));
-            quote.setTextColor(Color.parseColor(randomAccent));
-            author.setTextColor(Color.parseColor(randomAccent));
-            newText.setTextColor(getResources().getColor(R.color.mainPrimary));
+            if (themeId == 0) {
+                randomIndex = new Random().nextInt(primaryColors.length);
+                String randomPrimary = (primaryColors[randomIndex]);
+                String randomAccent = (accentColors[randomIndex]);
 
+                getWindow().getDecorView().setBackgroundColor(Color.parseColor(randomPrimary));
+                quote.setTextColor(Color.parseColor(randomAccent));
+                author.setTextColor(Color.parseColor(randomAccent));
+            } else if (themeId == 1) {
+                getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainDark));
+                quote.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainLight));
+                author.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainLight));
+            }
+
+            newText.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.mainLight));
             quote.setText("\"" + quoteString + "\"");
             author.setText(authorString);
             newText.setText("New");

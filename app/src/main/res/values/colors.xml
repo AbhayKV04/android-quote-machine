@@ -2,11 +2,12 @@
 <resources>
 
     <!-- Base colors -->
-    <color name="colorPrimary">#4e342e</color>
-    <color name="colorPrimaryDark">#4e342e</color>
+    <color name="colorPrimary">#263238</color>
+    <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#d7ccc8</color>
 
     <!-- Main Activity color -->
-    <color name="mainPrimary">#f5f5f5</color>
+    <color name="mainDark">#37474f</color>
+    <color name="mainLight">#f5f5f5</color>
 
 </resources>
