@@ -168,7 +168,7 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
             getWindow().getDecorView().setBackgroundColor(Color.parseColor(randomPrimary));
             quote.setTextColor(Color.parseColor(randomAccent));
             author.setTextColor(Color.parseColor(randomAccent));
-            newText.setTextColor(Color.parseColor(randomAccent));
+            newText.setTextColor(getResources().getColor(R.color.mainPrimary));
 
             quote.setText("\"" + quoteString + "\"");
             author.setText(authorString);
