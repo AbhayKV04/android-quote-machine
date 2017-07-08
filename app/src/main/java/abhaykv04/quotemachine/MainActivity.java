@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
                 intent.putExtra("id", 4);
-                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Rajinikanth&lastName=&limitTo=[nerdy]");
+                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Rajini&lastName=Kanth&limitTo=[nerdy]");
                 startActivity(intent);
             }
         });

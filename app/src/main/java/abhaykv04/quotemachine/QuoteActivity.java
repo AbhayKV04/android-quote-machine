@@ -2,6 +2,7 @@ package abhaykv04.quotemachine;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -28,8 +29,6 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         super.onCreate(savedInstanceState);
         gestureDetector = new GestureDetector(this);
         setContentView(R.layout.activity_quote);
-
-        Toast.makeText(getApplicationContext(), "Swipe to get a new one!", Toast.LENGTH_SHORT).show();
 
         Bundle extras = getIntent().getExtras();
         int id = extras.getInt("id");
@@ -107,6 +106,20 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            /**
+             * Making Toast appear for shorter length of time
+             */
+            final Toast toast = Toast.makeText(getApplicationContext(), "Fetching", Toast.LENGTH_SHORT);
+            toast.show();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    toast.cancel();
+                }
+            }, 500);
         }
 
         @Override
