@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton progButton, motiButton, famousButton, funnyButton, startButton;
+    private ImageButton progButton, motiButton, randButton, funnyButton, startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        famousButton = (ImageButton) findViewById(R.id.famousButton);
-        famousButton.setOnClickListener(new View.OnClickListener() {
+        randButton = (ImageButton) findViewById(R.id.randButton);
+        randButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);

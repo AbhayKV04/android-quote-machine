@@ -37,7 +37,7 @@ public class QuoteActivity extends AppCompatActivity {
         } else if (id == 2) {
             getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.motiColorPrimary));
         } else if (id == 3) {
-            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.famousColorPrimary));
+            getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.randColorPrimary));
         } else if (id == 4) {
             getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.funnyColorPrimary));
         } else if (id == 5) {
@@ -140,8 +140,8 @@ public class QuoteActivity extends AppCompatActivity {
                 quote.setTextColor(getResources().getColor(R.color.motiColorAccent));
                 author.setTextColor(getResources().getColor(R.color.motiColorAccent));
             } else if (id == 3) {
-                quote.setTextColor(getResources().getColor(R.color.famousColorAccent));
-                author.setTextColor(getResources().getColor(R.color.famousColorAccent));
+                quote.setTextColor(getResources().getColor(R.color.randColorAccent));
+                author.setTextColor(getResources().getColor(R.color.randColorAccent));
             } else if (id == 4) {
                 quote.setTextColor(getResources().getColor(R.color.funnyColorAccent));
                 author.setTextColor(getResources().getColor(R.color.funnyColorAccent));
