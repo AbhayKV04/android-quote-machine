@@ -54,7 +54,7 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
     }
 
     /**
-     * Swipe gesture detection
+     * Single touch detection
      */
 
     @Override
@@ -74,7 +74,8 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
 
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
+        new GetQuote().execute();
+        return true;
     }
 
     @Override
@@ -89,8 +90,7 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
 
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-        new GetQuote().execute();
-        return true;
+        return false;
     }
 
     /**
