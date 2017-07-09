@@ -1,26 +1,32 @@
 package abhaykv04.quotemachine;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageButton funnyButton, motiButton, progButton, randButton, startButton;
-    private int themeId = 0;
+    private int themeId = 1;
+    private String first = "Chuck", last = "Norris";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.mainDark));
+        getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
 
         /**
          * Intent ID Guide
@@ -72,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 intent.putExtra("id", 4);
                 intent.putExtra("themeId", themeId);
-                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=Chuck&lastName=Norris&limitTo=[nerdy]&escape=javascript");
+                intent.putExtra("url", "http://api.icndb.com/jokes/random?firstName=" + first + "&lastName=" + last + "&limitTo=[nerdy]&escape=javascript");
                 startActivity(intent);
             }
         });
@@ -88,11 +94,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        funnyButton.setColorFilter(Color.argb(63, 38, 50, 56));
-        motiButton.setColorFilter(Color.argb(63, 38, 50, 56));
-        progButton.setColorFilter(Color.argb(63, 38, 50, 56));
-        randButton.setColorFilter(Color.argb(63, 38, 50, 56));
-        startButton.setColorFilter(Color.argb(63, 38, 50, 56));
+        funnyButton.setColorFilter(Color.argb(31, 38, 50, 56));
+        motiButton.setColorFilter(Color.argb(31, 38, 50, 56));
+        progButton.setColorFilter(Color.argb(31, 38, 50, 56));
+        randButton.setColorFilter(Color.argb(31, 38, 50, 56));
+        startButton.setColorFilter(Color.argb(31, 38, 50, 56));
     }
 
     @Override
@@ -110,22 +116,91 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.lightTheme:
                 themeId = 0;
-                getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.mainLight));
-                funnyButton.setColorFilter(Color.argb(0, 0, 0, 0));
-                motiButton.setColorFilter(Color.argb(0, 0, 0, 0));
-                progButton.setColorFilter(Color.argb(0, 0, 0, 0));
-                randButton.setColorFilter(Color.argb(0, 0, 0, 0));
-                startButton.setColorFilter(Color.argb(0, 0, 0, 0));
+                getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent));
+                funnyButton.setColorFilter(Color.argb(31, 236, 239, 241));
+                motiButton.setColorFilter(Color.argb(31, 236, 239, 241));
+                progButton.setColorFilter(Color.argb(31, 236, 239, 241));
+                randButton.setColorFilter(Color.argb(31, 236, 239, 241));
+                startButton.setColorFilter(Color.argb(31, 236, 239, 241));
                 return true;
 
             case R.id.darkTheme:
                 themeId = 1;
-                getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.mainDark));
-                funnyButton.setColorFilter(Color.argb(63, 38, 50, 56));
-                motiButton.setColorFilter(Color.argb(63, 38, 50, 56));
-                progButton.setColorFilter(Color.argb(63, 38, 50, 56));
-                randButton.setColorFilter(Color.argb(63, 38, 50, 56));
-                startButton.setColorFilter(Color.argb(63, 38, 50, 56));
+                getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
+                funnyButton.setColorFilter(Color.argb(31, 38, 50, 56));
+                motiButton.setColorFilter(Color.argb(31, 38, 50, 56));
+                progButton.setColorFilter(Color.argb(31, 38, 50, 56));
+                randButton.setColorFilter(Color.argb(31, 38, 50, 56));
+                startButton.setColorFilter(Color.argb(31, 38, 50, 56));
+                return true;
+
+            case R.id.tweak:
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AppTheme_Dark);
+                builder.setTitle("Funny Quotes Tweak");
+                builder.setMessage("You can replace the default name in funny quotes with yours!");
+
+                // Set up the input
+                final EditText firstName = new EditText(MainActivity.this);
+                final EditText lastName = new EditText(MainActivity.this);
+
+                // Set up layout
+                LinearLayout layout = new LinearLayout(MainActivity.this);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                // Specify the type of input
+                firstName.setInputType(InputType.TYPE_CLASS_TEXT);
+                firstName.setHint("First Name");
+                firstName.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent));
+                firstName.setHintTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorHint));
+
+                lastName.setInputType(InputType.TYPE_CLASS_TEXT);
+                lastName.setHint("Last Name");
+                lastName.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent));
+                lastName.setHintTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorHint));
+
+                // add fields to layout
+                layout.addView(firstName);
+                layout.addView(lastName);
+
+                // set layout view in dialog
+                builder.setView(layout);
+
+                // Set up the buttons
+                builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (firstName.getText().toString().isEmpty()) {
+                            first = "Chuck";
+                        } else {
+                            first = firstName.getText().toString();
+                        }
+
+                        if (lastName.getText().toString().isEmpty()) {
+                            last = "Norris";
+                        } else {
+                            last = lastName.getText().toString();
+                        }
+                    }
+                });
+
+                builder.setNeutralButton("Default", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        first = "Chuck";
+                        last = "Norris";
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (dialog != null) {
+                            dialog.cancel();
+                        }
+                    }
+                });
+
+                builder.show();
                 return true;
 
             case R.id.exit:

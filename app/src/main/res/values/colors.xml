@@ -3,11 +3,8 @@
 
     <!-- Base colors -->
     <color name="colorPrimary">#37474f</color>
-    <color name="colorPrimaryDark">#37474f</color>
-    <color name="colorAccent">#cfd8dc</color>
-
-    <!-- Main Activity color -->
-    <color name="mainDark">#37474f</color>
-    <color name="mainLight">#f5f5f5</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorAccent">#eceff1</color>
+    <color name="colorHint">#b0bec5</color>
 
 </resources>
