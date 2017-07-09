@@ -55,7 +55,7 @@ public class WelcomeActivity extends AppCompatActivity implements GestureDetecto
 
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
         return true;
@@ -100,16 +100,14 @@ public class WelcomeActivity extends AppCompatActivity implements GestureDetecto
                     JSONObject jsonObj = new JSONObject(jsonStr);
                     quoteString = jsonObj.getString("quote");
                     authorString = jsonObj.getString("author");
-
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
-
                 }
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
@@ -119,7 +117,6 @@ public class WelcomeActivity extends AppCompatActivity implements GestureDetecto
                         Toast.makeText(getApplicationContext(), "Check your internet connection!", Toast.LENGTH_LONG).show();
                     }
                 });
-
             }
 
             return null;

@@ -18,12 +18,13 @@ import org.json.JSONObject;
 import java.util.Random;
 
 public class QuoteActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
-
     private String TAG = QuoteActivity.class.getSimpleName();
 
     private TextView quote, author, newText;
     private String quoteString = "Check your internet connection!";
     private String authorString = "";
+
+    // Arrays of backgrounds and corresponding text colors
     private String[] primaryColors = {"#C62828", "#AD1457", "#6A1B9A", "#4527A0", "#283593", "#1565C0", "#0277BD", "#00838F", "#00695C", "#2E7D32", "#558B2F", "#9E9D24", "#F9A825", "#FF8F00", "#EF6C00", "#D84315", "#4E342E"};
     private String[] accentColors = {"#FFCDD2", "#F8BBD0", "#E1BEE7", "#D1C4E9", "#C5CAE9", "#BBDEFB", "#B3E5FC", "#B2EBF2", "#B2DFDB", "#C8E6C9", "#DCEDC8", "#F0F4C3", "#FFF9C4", "#FFECB3", "#FFE0B2", "#FFCCBC", "#D7CCC8"};
 
@@ -137,7 +138,7 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(), "Json parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

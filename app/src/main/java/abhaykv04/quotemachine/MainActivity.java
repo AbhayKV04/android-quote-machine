@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
 
         /**
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
          * 5 - Start-Up
          */
 
-        final Intent intent = new Intent(getApplicationContext(), QuoteActivity.class);
+        final Intent intent = new Intent(MainActivity.this, QuoteActivity.class);
 
         progButton = (ImageButton) findViewById(R.id.progButton);
         progButton.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Set color filter (tint) on image buttons
         funnyButton.setColorFilter(Color.argb(31, 38, 50, 56));
         motiButton.setColorFilter(Color.argb(31, 38, 50, 56));
         progButton.setColorFilter(Color.argb(31, 38, 50, 56));
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout layout = new LinearLayout(MainActivity.this);
                 layout.setOrientation(LinearLayout.VERTICAL);
 
-                // Specify the type of input
+                // Specify the type and color of input
                 firstName.setInputType(InputType.TYPE_CLASS_TEXT);
                 firstName.setHint("First Name");
                 firstName.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent));
