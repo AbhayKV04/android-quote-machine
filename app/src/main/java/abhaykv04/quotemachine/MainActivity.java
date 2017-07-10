@@ -117,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.lightTheme:
                 themeId = 0;
                 getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent));
-                funnyButton.setColorFilter(Color.argb(31, 236, 239, 241));
-                motiButton.setColorFilter(Color.argb(31, 236, 239, 241));
-                progButton.setColorFilter(Color.argb(31, 236, 239, 241));
-                randButton.setColorFilter(Color.argb(31, 236, 239, 241));
-                startButton.setColorFilter(Color.argb(31, 236, 239, 241));
+                funnyButton.clearColorFilter();
+                motiButton.clearColorFilter();
+                progButton.clearColorFilter();
+                randButton.clearColorFilter();
+                startButton.clearColorFilter();
                 return true;
 
             case R.id.darkTheme:
@@ -169,15 +169,11 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (firstName.getText().toString().isEmpty()) {
+                        if (firstName.getText().toString().isEmpty() && lastName.getText().toString().isEmpty()) {
                             first = "Chuck";
-                        } else {
-                            first = firstName.getText().toString();
-                        }
-
-                        if (lastName.getText().toString().isEmpty()) {
                             last = "Norris";
                         } else {
+                            first = firstName.getText().toString();
                             last = lastName.getText().toString();
                         }
                     }
