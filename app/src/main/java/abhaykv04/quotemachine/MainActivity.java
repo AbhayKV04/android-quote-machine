@@ -110,6 +110,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        if (themeId == 0) {
+            menu.getItem(0).setVisible(false);
+            menu.getItem(1).setVisible(true);
+        } else if (themeId == 1) {
+            menu.getItem(0).setVisible(true);
+            menu.getItem(1).setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
 
         switch (menuItem.getItemId()) {
