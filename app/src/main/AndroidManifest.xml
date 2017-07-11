@@ -28,6 +28,11 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity
+            android:name=".SignIn"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity
             android:name=".QuoteActivity"

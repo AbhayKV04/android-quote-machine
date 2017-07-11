@@ -13,6 +13,13 @@
         android:id="@+id/tweak"
         android:title="Tweak"/>
 
+
+    <item
+        android:id="@+id/sout"
+        android:title="Sign out"/>
+    <item
+        android:id="@+id/sin"
+        android:title="Sign In"/>
     <item
         android:id="@+id/exit"
         android:title="Exit"/>

@@ -55,7 +55,7 @@ public class WelcomeActivity extends AppCompatActivity implements GestureDetecto
 
     @Override
     public boolean onSingleTapUp(MotionEvent motionEvent) {
-        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+        Intent intent = new Intent(WelcomeActivity.this, SignIn.class);
         startActivity(intent);
         finish();
         return true;

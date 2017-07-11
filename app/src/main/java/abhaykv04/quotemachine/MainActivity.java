@@ -3,6 +3,7 @@ package abhaykv04.quotemachine;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,12 +15,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageButton funnyButton, motiButton, progButton, randButton, startButton;
     private int themeId = 1;
     private String first = "Chuck", last = "Norris";
+    int logid=0;
+    private  FirebaseAuth.AuthStateListener mauthlist;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +127,14 @@ public class MainActivity extends AppCompatActivity {
             menu.getItem(0).setVisible(true);
             menu.getItem(1).setVisible(false);
         }
+        if (logid == 0) {
+            menu.getItem(3).setVisible(false);
+            menu.getItem(4).setVisible(true);
+        } else if (logid == 1) {
+            menu.getItem(3).setVisible(true);
+            menu.getItem(4).setVisible(false);
+        }
+
         return true;
     }
 
@@ -214,6 +230,27 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.exit:
                 finish();
+                return true;
+            case R.id.sin:
+                Intent intent = new Intent(MainActivity.this,SignIn.class);
+                startActivity(intent);
+                return true;
+            case R.id.sout:
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+
+                mauthlist = new FirebaseAuth.AuthStateListener() {
+                    @Override
+                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                        if(firebaseAuth.getCurrentUser()!=null){
+                            Toast.makeText(MainActivity.this,"Could'nt Sign-Out",Toast.LENGTH_LONG).show();
+                            logid=1;
+
+                        }else
+                        {Toast.makeText(MainActivity.this,"Sign-Out Successful",Toast.LENGTH_LONG).show();
+                            logid=0;}
+                    }
+                };
                 return true;
         }
 
