@@ -21,6 +21,9 @@
         android:id="@+id/sin"
         android:title="Sign In"/>
     <item
+        android:id="@+id/fav"
+        android:title="Favourites"/>
+    <item
         android:id="@+id/exit"
         android:title="Exit"/>
 </menu>

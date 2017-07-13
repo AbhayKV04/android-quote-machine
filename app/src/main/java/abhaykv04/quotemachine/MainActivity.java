@@ -18,13 +18,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageButton funnyButton, motiButton, progButton, randButton, startButton;
     private int themeId = 1;
     private String first = "Chuck", last = "Norris";
-    int logid=0;
+    int logid=1;
     private  FirebaseAuth.AuthStateListener mauthlist;
 
     private FirebaseAuth mAuth;
@@ -43,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
          * 4 - Funny
          * 5 - Start-Up
          */
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user==null)
+        {logid=0;}
+        else{
+            logid=1;
+        }
         final Intent intent = new Intent(MainActivity.this, QuoteActivity.class);
 
         progButton = (ImageButton) findViewById(R.id.progButton);
@@ -130,9 +136,11 @@ public class MainActivity extends AppCompatActivity {
         if (logid == 0) {
             menu.getItem(3).setVisible(false);
             menu.getItem(4).setVisible(true);
+            menu.getItem(5).setVisible(false);
         } else if (logid == 1) {
             menu.getItem(3).setVisible(true);
             menu.getItem(4).setVisible(false);
+            menu.getItem(5).setVisible(true);
         }
 
         return true;
@@ -239,19 +247,30 @@ public class MainActivity extends AppCompatActivity {
                 mAuth = FirebaseAuth.getInstance();
                 mAuth.signOut();
 
-                mauthlist = new FirebaseAuth.AuthStateListener() {
+               /* mauthlist = new FirebaseAuth.AuthStateListener() {
                     @Override
-                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                        if(firebaseAuth.getCurrentUser()!=null){
-                            Toast.makeText(MainActivity.this,"Could'nt Sign-Out",Toast.LENGTH_LONG).show();
-                            logid=1;
+                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {*/
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        if(user==null){
+                            Toast.makeText(MainActivity.this,"Sign-Out",Toast.LENGTH_LONG).show();
+                            logid=0;
+                           /* Intent i= new Intent(MainActivity.this,MainActivity.class);
+                            startActivity(i);
+                            finish();*/
 
                         }else
-                        {Toast.makeText(MainActivity.this,"Sign-Out Successful",Toast.LENGTH_LONG).show();
-                            logid=0;}
-                    }
-                };
+                        {Toast.makeText(MainActivity.this,"Couldn't Sign-Out",Toast.LENGTH_LONG).show();
+                            logid=1;
+                            }
+
+
                 return true;
+            case R.id.fav:
+                Intent i= new Intent(MainActivity.this,FavouritesActivity.class);
+                startActivity(i);
+                finish();
+                return  true;
         }
 
         return super.onOptionsItemSelected(menuItem);

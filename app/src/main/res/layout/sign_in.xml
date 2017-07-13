@@ -2,52 +2,65 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     xmlns:tools="http://schemas.android.com/tools">
     <EditText
         android:id="@+id/e1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="13dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         tools:layout_editor_absoluteX="68dp"
         tools:layout_editor_absoluteY="16dp"
-        android:hint="Enter email"/>
+        android:hint="Enter email"
+        android:textColorHint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/e2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="11dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:textColorHint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
         tools:layout_editor_absoluteX="68dp"
         tools:layout_editor_absoluteY="95dp"
+        android:hint="Enter password"
         android:layout_below="@+id/e1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="Enter password"/>
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/bi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/e2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="11dp"
         android:text="Sign in"
         tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="185dp" />
+        tools:layout_editor_absoluteY="185dp"
+        android:layout_marginLeft="63dp"
+        android:layout_marginStart="63dp"
+        android:layout_below="@+id/e2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/bu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/bi"
-        android:layout_alignStart="@+id/bi"
-        android:layout_centerVertical="true"
-        android:text="Sign UP" />
+        android:text="Sign UP"
+        android:layout_alignBaseline="@+id/bi"
+        android:layout_alignBottom="@+id/bi"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="61dp"
+        android:layout_marginEnd="61dp" />
 
 
 </RelativeLayout>

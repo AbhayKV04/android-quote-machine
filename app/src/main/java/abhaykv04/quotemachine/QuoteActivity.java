@@ -1,5 +1,6 @@
 package abhaykv04.quotemachine;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,8 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +34,11 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
     private TextView quote, author, newText;
     private String quoteString = "Check your internet connection!";
     private String authorString = "";
+    private Button fav;
+    int i;
+
+
+    private DatabaseReference root;
 
     // Arrays of backgrounds and corresponding text colors
     private String[] primaryColors = {"#C62828", "#AD1457", "#6A1B9A", "#4527A0", "#283593", "#1565C0", "#0277BD", "#00838F", "#00695C", "#2E7D32", "#558B2F", "#9E9D24", "#F9A825", "#FF8F00", "#EF6C00", "#D84315", "#4E342E"};
@@ -39,11 +55,40 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         quote = (TextView) findViewById(R.id.quote);
         author = (TextView) findViewById(R.id.author);
         newText = (TextView) findViewById(R.id.newText);
+        fav = (Button) findViewById(R.id.f1);
+
+        root = FirebaseDatabase.getInstance().getReference();
 
         getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(QuoteActivity.this, R.color.colorPrimary));
         newText.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.colorAccent));
 
         new GetQuote().execute();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ival = root.child(user.getUid());
+        ival.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                i = Integer.parseInt(dataSnapshot.child("i").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        fav.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+            DatabaseReference child = root.child(user.getUid());
+            child.child("Quote"+i).child("Quote").setValue(quoteString);
+
+                child.child("Quote"+i).child("Author").setValue(authorString);i++;
+                child.child("i").setValue(i);
+            }
+        });
     }
 
     /**
