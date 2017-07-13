@@ -30,18 +30,17 @@ import java.util.Map;
 
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 public class FavouritesActivity extends AppCompatActivity {
-
-
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
-    private  String userID;
 
+    private String userID;
     private ArrayList<String> arrayList = new ArrayList<>();
 
     private ListView mListView;
-    private HashMap<String,String> hmq;
+    private HashMap<String, String> hmq;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +49,14 @@ public class FavouritesActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.fav);
 
         //declare the database reference object. This is what we use to access the database.
-        //NOTE: Unless you are signed in, this will not be useable.
+        //NOTE: Unless you are signed in, this will not be usable.
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
         myRef = mFirebaseDatabase.getReference(userID);
-        final  ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayList);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(FavouritesActivity.this, android.R.layout.simple_list_item_1, arrayList);
         mListView.setAdapter(arrayAdapter);
 
         hmq = new HashMap<>();
@@ -67,54 +66,45 @@ public class FavouritesActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
 
-                    Toast.makeText(FavouritesActivity.this,"Successfully signed in with: " + user.getEmail(),Toast.LENGTH_LONG).show();
+                    // User is signed in
+                    Toast.makeText(FavouritesActivity.this, "Successfully signed in with: " + user.getEmail(), Toast.LENGTH_LONG).show();
                 } else {
+
                     // User is signed out
-                    Toast.makeText(FavouritesActivity.this,"Successfully signed out with: " + user.getEmail(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(FavouritesActivity.this, "Successfully signed out with: " + user.getEmail(), Toast.LENGTH_LONG).show();
                 }
-                // ...
             }
         };
 
-        myRef.addValueEventListener(new ValueEventListener() {                                            //Work Here
+        myRef.addValueEventListener(new ValueEventListener() {
+
+            //Work Here
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
 
                 int qmax = Integer.parseInt(dataSnapshot.child("i").getValue().toString());
-                List<HashMap<String,String>> listitems = new ArrayList<>();
-                SimpleAdapter adapter = new SimpleAdapter(FavouritesActivity.this,listitems,R.layout.list_item,new String[]{"First","Second"},new int[]{R.id.tv1,R.id.tv2});
-                for(int i=0;i<qmax;i++)
-                {
-
+                List<HashMap<String, String>> listitems = new ArrayList<>();
+                SimpleAdapter adapter = new SimpleAdapter(FavouritesActivity.this, listitems, R.layout.list_item, new String[]{"First", "Second"}, new int[]{R.id.tv1, R.id.tv2});
+                for (int i = 0; i < qmax; i++) {
                     String quote = dataSnapshot.child("Quote" + i).child("Quote").getValue(String.class);
-                    String author = dataSnapshot.child("Quote"+i).child("Author").getValue(String.class);
+                    String author = dataSnapshot.child("Quote" + i).child("Author").getValue(String.class);
 
                     //  arrayList.add(author);
-
-                    hmq.put(quote,author);
+                    hmq.put(quote, author);
                 }
+
                 Iterator it = hmq.entrySet().iterator();
-                while(it.hasNext())
-                {
-                    HashMap<String ,String> resmap = new HashMap<String, String>();
+                while (it.hasNext()) {
+                    HashMap<String, String> resmap = new HashMap<String, String>();
                     Map.Entry pair = (Map.Entry) it.next();
-                    resmap.put("First",pair.getKey().toString());
-                    resmap.put("Second",pair.getValue().toString());
+                    resmap.put("First", pair.getKey().toString());
+                    resmap.put("Second", pair.getValue().toString());
                     listitems.add(resmap);
                 }
 
-
-
-
-
-
                 mListView.setAdapter(adapter);
-
-
-
             }
 
             @Override
@@ -122,9 +112,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
 
     @Override
     public void onStart() {
@@ -139,7 +127,4 @@ public class FavouritesActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
-
-
 }

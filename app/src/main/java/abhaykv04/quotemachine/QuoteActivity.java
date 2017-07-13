@@ -1,6 +1,5 @@
 package abhaykv04.quotemachine;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -60,7 +59,6 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         root = FirebaseDatabase.getInstance().getReference();
 
         getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(QuoteActivity.this, R.color.colorPrimary));
-        newText.setTextColor(ContextCompat.getColor(QuoteActivity.this, R.color.colorAccent));
 
         new GetQuote().execute();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -78,13 +76,12 @@ public class QuoteActivity extends AppCompatActivity implements GestureDetector.
         });
 
         fav.setOnClickListener(new View.OnClickListener(){
+
             @Override
-            public void onClick(View v)
-            {FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-            DatabaseReference child = root.child(user.getUid());
-            child.child("Quote"+i).child("Quote").setValue(quoteString);
-
+            public void onClick(View v) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                DatabaseReference child = root.child(user.getUid());
+                child.child("Quote"+i).child("Quote").setValue(quoteString);
                 child.child("Quote"+i).child("Author").setValue(authorString);i++;
                 child.child("i").setValue(i);
             }

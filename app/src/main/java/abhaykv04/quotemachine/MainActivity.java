@@ -3,7 +3,6 @@ package abhaykv04.quotemachine;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton funnyButton, motiButton, progButton, randButton, startButton;
     private int themeId = 1;
     private String first = "Chuck", last = "Norris";
-    int logid=1;
-    private  FirebaseAuth.AuthStateListener mauthlist;
+    int logId = 1;
 
     private FirebaseAuth mAuth;
 
@@ -44,12 +42,14 @@ public class MainActivity extends AppCompatActivity {
          * 4 - Funny
          * 5 - Start-Up
          */
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user==null)
-        {logid=0;}
-        else{
-            logid=1;
+        if(user == null) {
+            logId = 0;
+        } else {
+            logId = 1;
         }
+
         final Intent intent = new Intent(MainActivity.this, QuoteActivity.class);
 
         progButton = (ImageButton) findViewById(R.id.progButton);
@@ -133,11 +133,12 @@ public class MainActivity extends AppCompatActivity {
             menu.getItem(0).setVisible(true);
             menu.getItem(1).setVisible(false);
         }
-        if (logid == 0) {
+
+        if (logId == 0) {
             menu.getItem(3).setVisible(false);
             menu.getItem(4).setVisible(true);
             menu.getItem(5).setVisible(false);
-        } else if (logid == 1) {
+        } else if (logId == 1) {
             menu.getItem(3).setVisible(true);
             menu.getItem(4).setVisible(false);
             menu.getItem(5).setVisible(true);
@@ -239,37 +240,28 @@ public class MainActivity extends AppCompatActivity {
             case R.id.exit:
                 finish();
                 return true;
+
             case R.id.sin:
                 Intent intent = new Intent(MainActivity.this,SignIn.class);
                 startActivity(intent);
                 return true;
+
             case R.id.sout:
                 mAuth = FirebaseAuth.getInstance();
                 mAuth.signOut();
-
-               /* mauthlist = new FirebaseAuth.AuthStateListener() {
-                    @Override
-                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {*/
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                        if(user==null){
-                            Toast.makeText(MainActivity.this,"Sign-Out",Toast.LENGTH_LONG).show();
-                            logid=0;
-                           /* Intent i= new Intent(MainActivity.this,MainActivity.class);
-                            startActivity(i);
-                            finish();*/
-
-                        }else
-                        {Toast.makeText(MainActivity.this,"Couldn't Sign-Out",Toast.LENGTH_LONG).show();
-                            logid=1;
-                            }
-
-
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user==null){
+                    Toast.makeText(MainActivity.this, "Sign-Out", Toast.LENGTH_SHORT).show();
+                    logId = 0;
+                } else {
+                    Toast.makeText(MainActivity.this, "Couldn't Sign-Out", Toast.LENGTH_SHORT).show();
+                    logId = 1;
+                }
                 return true;
+
             case R.id.fav:
                 Intent i= new Intent(MainActivity.this,FavouritesActivity.class);
                 startActivity(i);
-                finish();
                 return  true;
         }
 
